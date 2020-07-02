@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0,shrink-to-fit=no">
+    <title>menu</title>
+    <style type="text/css">
+        * {
+            /*消除網頁邊框*/
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        img {
+            vertical-align: bottom;
+        }
+        
+        .item {
+            margin: 0 25px 20px;
+        }
+        
+        .item-group {
+            width: 100%;
+            max-width: 1400px;
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        body {
+            background-image: url(http://file06.16sucai.com/2016/0317/9658897f83c5ac28b9ca7152f4d95186.jpg );
+        }
+        
+        .bg img {
+            width: 600px;
+            height: 600px;
+        }
+        
+        .footer {
+            background-color: maroon;
+            color: #FFFAFA;
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        .title h2 {
+            text-align: center;
+            font-size: 50px;
+        }
+        
+        .title h4 {
+            text-align: center;
+            font-size: 30px;
+        }
+        
+        .title {
+            margin: 0 0px 10px;
+            padding: 20px 10px;
+            background-color: black;
+            color: #FFFAFA;
+        }
+        
+        .title2 h2 {
+            text-align: center;
+            font-size: 50px;
+        }
+        
+        .title2 {
+            margin: 0 0px 10px;
+            padding: 20px 10px;
+            background-color: #FFFFFF;
+            color: maroon;
+        }
+        
+        .title p {
+            font-size: 25px;
+            text-align: center;
+        }
+        
+        .item .pic h3 {
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        .item .pic img {
+            width: 100%;
+            background-color: maroon;
+            color: #FFFFFF;
+        }
+        
+        .two {
+            margin: 60px 0;
+            background-color: #DCDCDC;
+            margin: 100px 100px;
+        }
+        
+        .two1 {
+            margin: 60px 0;
+            background-color: #DCDCDC;
+            margin: 300px 300px;
+        }
+        
+        .header {
+            height: 100px;
+            background-color: brown;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .btn {
+            width: 40px;
+            height: 40px;
+            background-color: brown;
+            display: block;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+        
+        .btn span {
+            opacity: 0;
+            width: 1px;
+            height: 1px;
+            display: block;
+        }
+        
+        #GEM {
+            position: absolute;
+        }
+        
+        #GEM:checked~.header nav {
+            left: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .btn {
+                display: none;
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .item-group {
+                display: flex;
+            }
+            ul.drop-down-menu {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        
+        .two .item {
+            display: flex;
+            margin: 0;
+        }
+        
+        .two .item .pic,
+        .two .item .text {
+            width: 50%;
+            margin: 100;
+        }
+        
+        .two .item .text {
+            display: flex;
+            padding: 0 10px;
+            box-sizing: border-box;
+            flex-direction: column;
+            justify-content: center;
+            text-align: left;
+        }
+        
+        .two .item .video-container,
+        .two .item .text {
+            width: 50%;
+            margin: 0;
+        }
+        
+        ul.drop-down-menu {
+            border-right: none;
+            display: inline-block;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        
+        ul.drop-down-menu li {
+            position: relative;
+            white-space: nowrap;
+            border-right: none;
+        }
+        
+        ul.drop-down-menu>li:last-child {
+            border-right: none;
+        }
+        
+        ul.drop-down-menu>li {
+            float: left;
+            /* 只有第一層是靠左對齊*/
+        }
+        
+        ul.drop-down-menu a {
+            border-radius: 20px;
+            background-color: brown;
+            color: #333;
+            display: block;
+            padding: 0 30px;
+            text-decoration: none;
+            line-height: 40px;
+        }
+        
+        ul.drop-down-menu a:hover {
+            /* 滑鼠滑入按鈕變色*/
+            background-color: yellow;
+            color: #fff;
+            border-style: ridge;
+            border-color: black;
+        }
+        
+        ul.drop-down-menu li:hover>a {
+            /* 滑鼠移入次選單上層按鈕保持變色*/
+            background-color: yellow;
+            color: red;
+        }
+        
+        ul.drop-down-menu ul {
+            position: absolute;
+            z-index: 99;
+            left: -1px;
+            top: 100%;
+            min-width: 180px;
+        }
+        
+        ul.drop-down-menu ul li:last-child {
+            border-bottom: none;
+        }
+        
+        ul.drop-down-menu ul ul {
+            /*第三層以後的選單出現位置與第二層不同*/
+            z-index: 999;
+            top: 10px;
+            left: 90%;
+        }
+        
+        ul.drop-down-menu ul {
+            /*隱藏次選單*/
+            display: none;
+        }
+        
+        ul.drop-down-menu li:hover>ul {
+            /* 滑鼠滑入展開次選單*/
+            display: block;
+        }
+        
+        .slider_container {
+            margin: 30px auto;
+            width: 400px;
+            height: 400px;
+            position: relative;
+            border: 20px solid;
+            border-color: #fff;
+            border-bottom-width: 100px;
+            background-color: #f5f5f5;
+            box-shadow: #666 0 0 5px;
+            box-sizing: content-box;
+        }
+        
+        .slider_container div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            -webkit-animation: round 25s linear infinite;
+            animation: round 25s linear infinite;
+        }
+        
+        .slider_container div img {
+            width: 400px;
+            height: 500px;
+            display: block;
+        }
+        
+        @-webkit-keyframes round {
+            4% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+                /* 0 - 1秒 淡入*/
+            }
+            20% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+                /* 1- 5秒靜止*/
+            }
+            24% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                /* 5-6秒淡出*/
+            }
+        }
+        
+        @keyframes round {
+            4% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+                /* 0 - 1秒 淡入*/
+            }
+            20% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+                /* 1- 5秒靜止*/
+            }
+            24% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                /* 5-6秒淡出*/
+            }
+        }
+        
+        .slider_container div:nth-child(5) {
+            -webkit-animation-delay: 0s;
+            animation-delay: 0s;
+        }
+        
+        .slider_container div:nth-child(4) {
+            -webkit-animation-delay: 5s;
+            animation-delay: 5s;
+        }
+        
+        .slider_container div:nth-child(3) {
+            -webkit-animation-delay: 10s;
+            animation-delay: 10s;
+        }
+        
+        .slider_container div:nth-child(2) {
+            -webkit-animation-delay: 15s;
+            animation-delay: 15s;
+        }
+        
+        .slider_container div:nth-child(1) {
+            -webkit-animation-delay: 20s;
+            animation-delay: 20s;
+        }
+        
+        .slider_container span {
+            color: #000;
+            background: #fff;
+            position: absolute;
+            left: 0%;
+            top: 280px;
+            width: 400px;
+            height: 100px;
+            font-size: 30px;
+            text-align: center;
+            line-height: 100px;
+            -webkit-transform: scaleY(0);
+            -ms-transform: scaleY(0);
+            transform: scaleY(0);
+            -webkit-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .slider_container:hover span {
+            width: 100%;
+            -webkit-transform: scaleY(1);
+            -ms-transform: scaleY(1);
+            transform: scaleY(1);
+        }
+        
+        .slider_container:hover div {
+            -webkit-animation-play-state: paused;
+            animation-play-state: paused;
+        }
+        
+        .rwd_slider_container_wrapper {
+            width: 440px;
+            height: 540px;
+            box-sizing: border-box;
+            box-shadow: #666 0 0 5px;
+            padding: 20px;
+            margin: 0 auto;
+            background-color: saddlebrown;
+        }
+        
+        .rwd_slider_container {
+            position: relative;
+            display: block;
+            height: 0;
+            padding: 0;
+            box-sizing: border-box;
+            padding-bottom: calc(70% + 100px);
+        }
+        
+        .rwd_slider_container .slider_container {
+            box-shadow: none;
+            margin: 0;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            box-sizing: border-box;
+            border: none;
+            background-color: transparent;
+        }
+        
+        .rwd_slider_container .slider_container div {
+            width: 100%;
+            line-height: 0;
+        }
+        
+        .rwd_slider_container .slider_container span {
+            top: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" name="" id="GEM">
+
+    <div class="header">
+        <h1 class="logo">
+            <a href="https://www.facebook.com/mochidad/"><img src="https://3.bp.blogspot.com/-HcHf5Edjm0s/WLd4SGlwC8I/AAAAAAAGOSk/OcNZgLeovRQiY86ZQiDeWR-iYOxiSkqTACLcB/s1600/AS002383_10.gif" width="150" height="100">
+        </h1>
+        <label for="GEM" class="btn"> 
+            <span>選單</span>
+        </label>
+        <ul class="drop-down-menu" style="border-radius: 50px;">
+            <li><a href="index.html"><b>主頁</b></a>
+
+            </li>
+            <li>
+                <a href="我的後宮.html "><b>我的後宮們</b></a>
+            </li>
+            <li>
+                <a href="http://www.csvs.khc.edu.tw/ischool/publish_page/0/"><b>旗農</b></a>
+            </li>
+            <li>
+                <a href="https://wp.npust.edu.tw/"><b>屏科</b></a>
+            </li>
+        </ul>
+    </div>
+
+    <div class="title" style="font-family:'Segoe UI', Tahoma, Geneva, Verdana, sans-serif">
+        <h2>哈囉你好嗎?歡迎來到我的世界</h2>
+        <p>相遇亂世以外 危難中相愛</p>
+        <p>一點一滴每一天珍惜 怕突然來不及 好好的愛你。</p>
+    </div>
+    <marquee direction="right" scrollamount="10" behavior="alternate"><img src="https://stickershop.line-scdn.net/stickershop/v1/sticker/12689191/ANDROID/sticker.png"></marquee>
+
+    <div class="two " style="margin-top: 0px;">
+        <div>
+            <div class="item-group ">
+                <div class="item ">
+                    <div class="pic ">
+                        <a href="我的後宮.html"><img src="http://pic.baike.soso.com/ugc/baikepic2/8829/20141127105452-311247908.jpg/0 "></a>
+                    </div>
+                    <div class="text ">
+                        <h3>我的後宮</h3>
+                        <p>這是我的後宮 點進來認識一下</p>
+                        <p>後宮簡歷</p>
+                        <p>Top1.鄧紫棋</p>
+                        <p>Top2.泱泱</p>
+                        <p>Top3.蛋捲</p>
+                        <p>Top4.溫妮</p>
+                        <p>Top5.阿樂</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="two ">
+        <div>
+            <div class="item-group ">
+                <div class="item ">
+                    <div class="pic ">
+                        <a href="https://wp.npust.edu.tw/"><img src="photo/屏科.jpg"></a>
+                    </div>
+                    <div class="text ">
+                        <h3>國立屏東科技大學</h3>
+                        <p>這是我的大學 點進來認識一下</p>
+                        <p>屏科簡歷</p>
+                        <p>1924年 高雄州立屏東農業補習學校</p>
+                        <p>1928年 高雄州立屏東農業學校</p>
+                        <p>1945年 臺灣省立屏東農業職業學校</p>
+                        <p>1954年 臺灣省立農業專科學校</p>
+                        <p>1959年 臺灣省立屏東高級農業職業學校</p>
+                        <p>1964年 臺灣省立屏東農業專科學校</p>
+                        <p>1981年 國立屏東農業專科學</p>
+                        <p>1991年 國立屏東技術學院</p>
+                        <p>1997年 國立屏東科技大學</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+
+
+    <div class="two ">
+        <div>
+            <div class="item-group ">
+                <div class="item ">
+                    <div class="pic ">
+                        <a href="http://www.csvs.khc.edu.tw/ischool/publish_page/0/"><img src="photo/旗農.jpg"></a>
+                    </div>
+                    <div class="text ">
+                        <h3>國立旗山農工</h3>
+                        <p>這是我的高中 點進來認識一下</p>
+                        <p>旗農簡歷</p>
+                        <p>1.民國十七年 台灣公立龍肚農業補習學校。</p>
+                        <p>2.民國二十五年 旗山實踐農民學校。</p>
+                        <p>3.民國三十四年 高雄縣立旗山初級農業學校。</p>
+                        <p>4.民國四十四年 高雄縣立旗山農業職業學校。</p>
+                        <p>5.民國五十三年 台灣省立旗山農業職業學校。</p>
+                        <p>6.民國五十八年 台灣省立旗山高級農業學校。</p>
+                        <p>7.民國六十一年 台灣省立旗山高級農工職業學校。</p>
+                        <p>8.民國八十九年 國立旗山高級農工職業學校。</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer ">
+        &copy; 老師別當我拜託
+    </div>
+</body>
+
+</html>

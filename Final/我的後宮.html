@@ -1,0 +1,570 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <style>
+        * {
+            /*消除網頁邊框*/
+            margin: 0;
+            padding: 0;
+            list-style: none;
+        }
+        
+        img {
+            vertical-align: bottom;
+        }
+        
+        .item {
+            margin: 0 25px 20px;
+        }
+        
+        .item-group {
+            width: 100%;
+            max-width: 1600px;
+            margin: auto;
+            text-align: center;
+            vertical-align: middle;
+        }
+        
+        body {
+            background-image: url(http://file06.16sucai.com/2016/0317/9658897f83c5ac28b9ca7152f4d95186.jpg );
+        }
+        
+        .bg img {
+            width: 600px;
+            height: 600px;
+        }
+        
+        .footer {
+            background-color: black;
+            color: #FFFAFA;
+            text-align: center;
+            padding: 10px 0;
+        }
+        
+        .title h2 {
+            text-align: center;
+            font-size: 50px;
+        }
+        
+        .title h4 {
+            text-align: center;
+            font-size: 30px;
+        }
+        
+        .title {
+            margin: 0 0px 10px;
+            padding: 20px 10px;
+            background-color: maroon;
+            color: #FFFAFA;
+        }
+        
+        .title2 h2 {
+            text-align: center;
+            font-size: 50px;
+        }
+        
+        .title2 {
+            margin: 0 0px 10px;
+            padding: 20px 10px;
+            background-color: #FFFFFF;
+            color: maroon;
+        }
+        
+        .title p {
+            font-size: 25px;
+            text-align: center;
+        }
+        
+        .item .pic h3 {
+            font-size: 24px;
+            text-align: center;
+        }
+        
+        .item .pic img {
+            width: 100%;
+            background-color: maroon;
+            color: #FFFFFF;
+        }
+        
+        .two {
+            margin: 100px 100px;
+            background-color: #DCDCDC;
+        }
+        
+        .two1 {
+            margin: 60px 0;
+            background-color: #DCDCDC;
+            margin: 300px 300px;
+        }
+        
+        .header {
+            height: 100px;
+            background-color: brown;
+            position: relative;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+        
+        .btn {
+            width: 40px;
+            height: 40px;
+            background-color: brown;
+            display: block;
+            position: absolute;
+            top: 5px;
+            right: 10px;
+        }
+        
+        .btn span {
+            opacity: 0;
+            width: 1px;
+            height: 1px;
+            display: block;
+        }
+        
+        #GEM {
+            position: absolute;
+        }
+        
+        #GEM:checked~.header nav {
+            left: 0;
+        }
+        
+        @media (min-width: 768px) {
+            .btn {
+                display: none;
+            }
+            .header {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+            .item-group {
+                display: flex;
+            }
+            ul.drop-down-menu {
+                display: flex;
+                justify-content: space-between;
+                align-items: center;
+            }
+        }
+        
+        .two .item {
+            display: flex;
+            margin: 0;
+        }
+        
+        .two .item .pic,
+        .two .item .text {
+            width: 50%;
+            margin: 100;
+        }
+        
+        .two .item .text {
+            display: flex;
+            padding: 0 10px;
+            box-sizing: border-box;
+            flex-direction: column;
+            justify-content: justify;
+            text-align: left;
+            text-justify: distribute;
+        }
+        
+        .two .item .video-container,
+        .two .item .text {
+            width: 50%;
+            margin: 0;
+        }
+        
+        ul.drop-down-menu {
+            border-right: none;
+            display: inline-block;
+            font-family: 'Open Sans', Arial, sans-serif;
+        }
+        
+        ul.drop-down-menu li {
+            position: relative;
+            white-space: nowrap;
+            border-right: none;
+        }
+        
+        ul.drop-down-menu>li:last-child {
+            border-right: none;
+        }
+        
+        ul.drop-down-menu>li {
+            float: left;
+            /* 只有第一層是靠左對齊*/
+        }
+        
+        ul.drop-down-menu a {
+            border-radius: 20px;
+            background-color: brown;
+            color: #333;
+            display: block;
+            padding: 0 30px;
+            text-decoration: none;
+            line-height: 40px;
+        }
+        
+        ul.drop-down-menu a:hover {
+            /* 滑鼠滑入按鈕變色*/
+            background-color: yellow;
+            color: #fff;
+            border-style: ridge;
+            border-color: black;
+        }
+        
+        ul.drop-down-menu li:hover>a {
+            /* 滑鼠移入次選單上層按鈕保持變色*/
+            background-color: yellow;
+            color: red;
+        }
+        
+        ul.drop-down-menu ul {
+            position: absolute;
+            z-index: 99;
+            left: -1px;
+            top: 100%;
+            min-width: 180px;
+        }
+        
+        ul.drop-down-menu ul li:last-child {
+            border-bottom: none;
+        }
+        
+        ul.drop-down-menu ul ul {
+            /*第三層以後的選單出現位置與第二層不同*/
+            z-index: 999;
+            top: 10px;
+            left: 90%;
+        }
+        
+        ul.drop-down-menu ul {
+            /*隱藏次選單*/
+            display: none;
+        }
+        
+        ul.drop-down-menu li:hover>ul {
+            /* 滑鼠滑入展開次選單*/
+            display: block;
+        }
+        
+        .slider_container {
+            margin: 30px auto;
+            width: 400px;
+            height: 400px;
+            position: relative;
+            border: 20px solid;
+            border-color: #fff;
+            border-bottom-width: 100px;
+            background-color: #f5f5f5;
+            box-shadow: #666 0 0 5px;
+            box-sizing: content-box;
+        }
+        
+        .slider_container div {
+            position: absolute;
+            top: 0;
+            left: 0;
+            opacity: 0;
+            filter: alpha(opacity=0);
+            -webkit-animation: round 25s linear infinite;
+            animation: round 25s linear infinite;
+        }
+        
+        .slider_container div img {
+            width: 400px;
+            height: 500px;
+            display: block;
+        }
+        
+        @-webkit-keyframes round {
+            4% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+                /* 0 - 1秒 淡入*/
+            }
+            20% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+                /* 1- 5秒靜止*/
+            }
+            24% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                /* 5-6秒淡出*/
+            }
+        }
+        
+        @keyframes round {
+            4% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+                /* 0 - 1秒 淡入*/
+            }
+            20% {
+                opacity: 1;
+                filter: alpha(opacity=100);
+                /* 1- 5秒靜止*/
+            }
+            24% {
+                opacity: 0;
+                filter: alpha(opacity=0);
+                /* 5-6秒淡出*/
+            }
+        }
+        
+        .slider_container div:nth-child(5) {
+            -webkit-animation-delay: 0s;
+            animation-delay: 0s;
+        }
+        
+        .slider_container div:nth-child(4) {
+            -webkit-animation-delay: 5s;
+            animation-delay: 5s;
+        }
+        
+        .slider_container div:nth-child(3) {
+            -webkit-animation-delay: 10s;
+            animation-delay: 10s;
+        }
+        
+        .slider_container div:nth-child(2) {
+            -webkit-animation-delay: 15s;
+            animation-delay: 15s;
+        }
+        
+        .slider_container div:nth-child(1) {
+            -webkit-animation-delay: 20s;
+            animation-delay: 20s;
+        }
+        
+        .slider_container span {
+            color: #000;
+            background: #fff;
+            position: absolute;
+            left: 0%;
+            top: 280px;
+            width: 400px;
+            height: 100px;
+            font-size: 30px;
+            text-align: center;
+            line-height: 100px;
+            -webkit-transform: scaleY(0);
+            -ms-transform: scaleY(0);
+            transform: scaleY(0);
+            -webkit-transition: all 0.5s ease-in-out;
+            transition: all 0.5s ease-in-out;
+        }
+        
+        .slider_container:hover span {
+            width: 100%;
+            -webkit-transform: scaleY(1);
+            -ms-transform: scaleY(1);
+            transform: scaleY(1);
+        }
+        
+        .slider_container:hover div {
+            -webkit-animation-play-state: paused;
+            animation-play-state: paused;
+        }
+        
+        .rwd_slider_container_wrapper {
+            width: 440px;
+            height: 540px;
+            box-sizing: border-box;
+            box-shadow: #666 0 0 5px;
+            padding: 20px;
+            margin: 0 auto;
+            background-color: saddlebrown;
+        }
+        
+        .rwd_slider_container {
+            position: relative;
+            display: block;
+            height: 0;
+            padding: 0;
+            box-sizing: border-box;
+            padding-bottom: calc(70% + 100px);
+        }
+        
+        .rwd_slider_container .slider_container {
+            box-shadow: none;
+            margin: 0;
+            position: absolute;
+            top: 0;
+            bottom: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            margin: 0;
+            box-sizing: border-box;
+            border: none;
+            background-color: transparent;
+        }
+        
+        .rwd_slider_container .slider_container div {
+            width: 100%;
+            line-height: 0;
+        }
+        
+        .rwd_slider_container .slider_container span {
+            top: 100%;
+            white-space: nowrap;
+            text-overflow: ellipsis;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <input type="checkbox" name="" id="GEM">
+
+    <div class="header">
+        <h1 class="logo">
+            <a href="https://www.facebook.com/mochidad/"><img src="https://3.bp.blogspot.com/-HcHf5Edjm0s/WLd4SGlwC8I/AAAAAAAGOSk/OcNZgLeovRQiY86ZQiDeWR-iYOxiSkqTACLcB/s1600/AS002383_10.gif" width="150" height="100">
+        </h1>
+        <label for="GEM" class="btn"> 
+            <span>選單</span>
+        </label>
+        <ul class="drop-down-menu" style="border-radius: 50px;">
+            <li><a href="index.html"><b>主頁</b></a>
+
+            </li>
+            <li>
+                <a href="我的後宮.html "><b>我的後宮們</b></a>
+            </li>
+            <li>
+                <a href="http://www.csvs.khc.edu.tw/ischool/publish_page/0/"><b>旗農</b></a>
+            </li>
+            <li>
+                <a href="https://wp.npust.edu.tw/"><b>屏科</b></a>
+            </li>
+        </ul>
+    </div>
+
+
+
+    <a name="1">
+        <div>
+            <img src="photo/紫棋1.jpg " width="100% ">
+        </div>
+        <div>
+            <div class="wrap ">
+                <div class="title ">
+                    <h2>關於我的紫棋</h2>
+                    <p></p>鄧紫棋又名G.E.M.（「Get Everybody Moving」的簡稱，即「讓大家動起來」的意思），本名鄧詩穎（英語：Gloria Tang Sze-wing），是一名香港創作歌手。於中國上海出生，四歲時移居到英屬香港。2008年7月10日，以16歲之齡出道，取得香港三大樂壇頒獎禮新人金獎。</p>
+                </div>
+            </div>
+        </div>
+    </a>
+
+    <div>
+        <div>
+            <div class="item-group ">
+                <div class="item ">
+                    <div class="pic ">
+                        <img src="photo/泱泱.jpg">
+                    </div>
+                    <div>
+                        <h3 style="color: cornsilk;font-size: 20px;">泱泱可愛</h3>
+                    </div>
+                    <div>
+                        <p style="color: yellow;text-align:justify;">吳泱潾（1991年2月19日－），藝名泱泱，國立臺灣師範大學東亞學系畢業，2014年入選Lamigo桃猿之Lamigirls。2015年底離開Lamigirls，2016年參加實景選秀節目，其後加入麥卡貝網路電視並多次作為旗下節目的嘉賓，表現廣受好評，2017年起成為木曜4超玩主持人之一並在Lamigo TV擔任觀眾席特派員。</p>
+                        <p style="font-size: 20px;color: yellow;"><b><u><a href="哈哈.HTML" style="color: red;">泱泱男友</a></u></b></p>
+                        <p style="color: yellow;"><b>→→<u><a href="https://www.instagram.com/lynnwu0219/?hl=zh-tw" style="color: yellow;">IG:lynnwu0219</a></u></b></p>
+                        <p style="color: yellow;"><b>→→<u><a href="https://www.facebook.com/yanglynnwu/" style="color: yellow;">FB:泱泱 LYNN</a></u></b></p>
+                    </div>
+                </div>
+                <div class="item ">
+                    <div class="pic ">
+                        <img src="photo/溫妮2.jpg">
+                    </div>
+                    <div class="text ">
+                        <h3 style="color: cornsilk;font-size: 20px;">溫妮可愛</h3>
+                        <p style="color: yellow;">黃于恩（1989年10月31日－），藝名溫妮，為台灣模特兒、主持人。 曾代表國立臺灣藝術大學擔任中天綜合台大學生了沒固定班底而打開知名度，2017年起成為麥卡貝網路電視木曜4超玩節目固定主持群。目前除固定主持節目外，也經常參與網路與電視節目錄影，以及不定期錄製翻唱歌曲影片至網路平台等</p>
+                        <p style="font-size: 20px;color: yellow;"><b><u><a href="哈哈.HTML" style="color: red;">溫妮男友</a></u></b></p>
+                        <p style="color: yellow;"><b>→→<u><a href="https://www.instagram.com/yuen_nnnnnn/?hl=zh-tw" style="color: yellow;">IG:yuen_nnnnnn</a></u></b></p>
+                        <p style="color: yellow;"><b>→→<u><a href="https://www.facebook.com/SMALLWINNI/" style="color: yellow;">FB:黃于恩 溫妮</a></u></b></p>
+                    </div>
+                </div>
+                <div class="item ">
+                    <div class="pic ">
+                        <img src="photo/阿樂.jpg">
+                    </div>
+                    <div class="text ">
+                        <h3 style="color: cornsilk;font-size: 20px;">阿樂可愛</h3>
+                        <p style="color: yellow;">阿樂（Yunni），本名林妤臻（1995年4月27日－），台灣知名藝人及實況主，畢業於淡江大學國際企業學系，其直播內容主要以電玩為主，偶爾也會有鋼琴及小提琴的演奏。。。目前除了在Youtube上上傳直播精華、在Twitch開台直播和音樂cover等作品外，也會擔任活動主持人及參與電視或網路節目錄影。</p>
+                        <p style="font-size: 20px;color: yellow;"><b><u><a href="哈哈.HTML" style="color: red;">阿樂男友</a></u></b></p>
+                        <p style="color: yellow;"><b>→→<u><a href="https://www.instagram.com/alephant_0427/?hl=zh-tw" style="color: yellow;">IG:alephant_0427</a></u></b></p>
+                        <p style="color: yellow;"><b>→→<u><a href="https://www.facebook.com/yunni0427/" style="color: yellow;">FB:我是阿樂。</a></u></b></p>
+                    </div>
+                </div>
+                <div class="item ">
+                    <div class="pic ">
+                        <img src="photo/蛋捲.jpg">
+                    </div>
+                    <div class="text ">
+                        <h3 style="color: cornsilk;font-size: 20px;">蛋捲可愛</h3>
+                        <p style="color: yellow;">蛋捲(Egg Roll 1995年06月16日)從國小就開始接觸電玩的蛋捲，現為Twitch遊戲軟體影音串流平台的遊戲實況主，其自信且可愛的個性，吸引了數十萬粉絲的追蹤。曾為英雄聯盟女子戰隊Logi-A Team成員；曾主持兼播報英雄聯盟跨海連線混打挑戰賽；曾任Hero戰略週報特派記者。是位集美貌與專業的玩家！</p>
+                        <p style="font-size: 20px;color: yellow;"><b><u><a href="哈哈.HTML" style="color: red;">蛋捲男友</a></u></b></p>
+                        <p style="color: yellow;"><b>→→<u><a href="https://www.instagram.com/eggroll0616/?hl=zh-tw" style="color: yellow;">IG:eggroll0616</a></u></b></p>
+                        <p style="color: yellow;"><b>→→<u><a href="https://www.facebook.com/EggRoll0616" style="color: yellow;">FB:蛋捲</a></u></b></p>
+                    </div>
+                </div>
+
+            </div>
+        </div>
+    </div>
+
+    <div class="rwd_slider_container_wrapper">
+        <div class="rwd_slider_container">
+            <div class="slider_container">
+                <div>
+                    <img src="photo/泱泱2.jpg" alt="pure css slider" width="400" height="280" />
+
+                </div>
+                <div>
+                    <img src="photo/溫妮1.jpg" alt="pure css slider" width="400" height="280" />
+
+                </div>
+                <div>
+                    <img src="photo/溫妮3.jpg" alt="pure css slider" width="400" height="280" />
+
+                </div>
+                <div>
+                    <img src="photo/蛋捲2.jpg" alt="pure css slider" width="400" height="280" />
+
+                </div>
+                <div>
+                    <img src="photo/阿樂2.jpg" alt="pure css slider" width="400" height="280" />
+
+                </div>
+            </div>
+            <!-- end of .slider_container -->
+
+        </div>
+        <!-- end of .rwd_slider_container -->
+    </div>
+    <!-- rwd_slider_container_wrapper-->
+
+
+
+
+    <div class="footer">
+        &copy; 老師別當我拜託
+    </div>
+
+
+
+
+
+</body>
+
+</html>
